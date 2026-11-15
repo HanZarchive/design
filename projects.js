@@ -511,6 +511,23 @@ window.PORTFOLIO = {
     }
   ],
 
+  /* About 页。resume 是网站自己文件夹里的 PDF，换新简历时替换 assets 里的文件并改这里的文件名。 */
+  about: {
+    title: "About Me",
+    paragraphs: [
+      "I'm a designer, researcher, and creative technologist based in Los Angeles. Previously working in UX research and product strategy in Shanghai, I’m currently pursuing an MFA in Media Design Practices at ArtCenter.",
+      "My work explores how AI systems process cultural ambiguity in language, and how such processing in turn shapes human cognition and meaning-making."
+    ],
+    resume: "assets/Resume-Han-Zhang-June2026.pdf",
+    links: [
+      ["Email", "gracehan2333@gmail.com", "mailto:gracehan2333@gmail.com"],
+      ["LinkedIn", "hanzhang233", "https://www.linkedin.com/in/hanzhang233/"],
+      ["Instagram", "kaleidomoon_", "https://www.instagram.com/kaleidomoon_/"],
+      ["YouTube", "@Hanzhang9898", "https://www.youtube.com/@Hanzhang9898"],
+      ["CV", "Google Drive", "https://drive.google.com/file/d/1u9sFXPboTunCVJJ-xxqgWHxT9-m8XxUn/view?usp=sharing"]
+    ]
+  },
+
   /* Experiments 页：按组排列。soon: true 会显示 “Coming soon”。 */
   experiments: [
     { title: "Coding", items: [
