@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Han Zhang Portfolio</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;700&family=IM+Fell+English:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -55,16 +56,31 @@ img { display: block; max-width: 100%; }
 .eyebrow::before { content: ""; flex: none; width: 28px; height: 1px; background: var(--ink); }
 
 /* Nav */
-.nav { position: sticky; top: 0; z-index: 10; background: rgba(11, 11, 12, .82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); }
-.nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; padding-top: 14px; padding-bottom: 14px; }
-.nav-id { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
-.nav-name { font-family: var(--font-display); font-size: 18px; text-decoration: none; line-height: 1; }
-.nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
-.nav-links a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 5px; transition: text-decoration-color var(--dur) var(--ease); }
-.nav-links a:hover, .nav-links a[aria-current="page"] { text-decoration-color: var(--violet); }
+.nav { position: sticky; top: 0; z-index: 10; background: var(--paper); color: var(--paper-ink); border-bottom: 1px solid rgba(17, 17, 17, .2); }
+.nav .mono { color: rgba(17, 17, 17, .66); }
+.nav-inner { display: flex; align-items: center; gap: 12px 18px; padding-top: 6px; padding-bottom: 6px; }
+.nav-home { display: inline-flex; flex: none; }
+.nav-logo { width: 46px; height: 46px; display: block; filter: saturate(1.35) drop-shadow(0 0 1px rgba(94, 6, 170, .35)); }
+.nav-role { margin-left: auto; white-space: nowrap; }
+.search { position: relative; flex: 1 1 auto; max-width: 420px; }
+.search input { width: 100%; font: inherit; font-size: 15px; color: var(--paper-ink); background: rgba(255, 255, 255, .18); border: 1px solid rgba(17, 17, 17, .55); padding: 8px 12px; outline-offset: 2px; }
+.search input::placeholder { color: rgba(17, 17, 17, .55); }
+.search input::-webkit-search-cancel-button { -webkit-appearance: none; }
+#search-results { position: absolute; left: 0; top: calc(100% + 10px); width: min(460px, 86vw); margin: 0; padding: 6px; list-style: none; background: var(--paper); color: var(--paper-ink); border: 1px solid var(--paper-ink); max-height: 60vh; overflow: auto; }
+#search-results a { display: flex; justify-content: space-between; gap: 16px; padding: 9px 10px; text-decoration: none; color: var(--paper-ink); }
+#search-results a:hover, #search-results a:focus-visible { background: rgba(17, 17, 17, .08); }
+#search-results b { font-family: var(--font-title); font-weight: 400; font-size: 16px; }
+#search-results span { color: rgba(17, 17, 17, .6); font-size: 13px; white-space: nowrap; }
+#search-results .none { padding: 9px 10px; color: rgba(17, 17, 17, .6); font-size: 14px; }
+.crumbs { padding-top: 30px; font-family: var(--font-title); font-size: 24px; line-height: 1.25; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.crumbs a { color: var(--ink-55); text-decoration: none; transition: color var(--dur) var(--ease); }
+.crumbs a:hover { color: var(--ink); }
+.crumbs .on { color: var(--ink); }
+.crumbs i { font-style: normal; color: var(--ink-55); }
+@media (max-width: 700px) { .nav-role { display: none; } .crumbs { font-size: 20px; padding-top: 22px; } }
 
 /* Hero */
-.hero { padding-top: 56px; padding-bottom: 40px; }
+.hero { padding-top: 36px; padding-bottom: 40px; }
 .hero h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 3.6vw, 40px); line-height: 1.05; letter-spacing: -.01em; margin: 18px 0; text-wrap: balance; }
 .hero-desc { max-width: 62ch; margin: 0; font-size: 16.5px; font-weight: 300; line-height: 1.55; color: var(--ink-70); }
 .resume { display: inline-block; margin-top: 22px; padding: 3px 8px; font-family: var(--font-title); font-size: 16px; color: var(--ink); background: rgba(169, 126, 255, .35); text-decoration: underline; text-decoration-color: var(--blue); text-underline-offset: 4px; transition: background var(--dur) var(--ease); }
@@ -111,7 +127,7 @@ a.card:hover { border-color: var(--ink); }
 .card p { margin: 0; color: var(--ink-70); font-size: 14.5px; line-height: 1.5; }
 
 /* Sub-pages */
-.page { padding-top: 40px; padding-bottom: 96px; }
+.page { padding-top: 28px; padding-bottom: 96px; }
 .back { display: inline-block; color: var(--ink); text-underline-offset: 5px; margin-bottom: 44px; }
 .page-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(34px, 4.2vw, 48px); line-height: 1.05; margin: 18px 0 14px; text-wrap: balance; }
 .page-lede { font-family: var(--font-body); font-size: 18px; font-weight: 400; line-height: 1.4; margin: 0 0 32px; color: var(--ink); }
@@ -179,7 +195,8 @@ a.card:hover { border-color: var(--ink); }
 .footer { background: var(--paper); color: var(--paper-ink); }
 /* Light mode of the same stone + ripples: invert whatever is behind the footer, then veil it with paper. */
 @supports ((backdrop-filter: invert(1)) or (-webkit-backdrop-filter: invert(1))) {
-  .footer { background: rgba(243, 241, 236, .42); -webkit-backdrop-filter: invert(1) contrast(.85); backdrop-filter: invert(1) contrast(.85); }
+  .footer { background: rgba(243, 241, 236, .08); -webkit-backdrop-filter: invert(.9) contrast(.85); backdrop-filter: invert(.9) contrast(.85); }
+  .nav { background: rgba(243, 241, 236, .08); -webkit-backdrop-filter: invert(.9) contrast(.85) blur(10px); backdrop-filter: invert(.9) contrast(.85) blur(10px); }
 }
 .footer-inner { padding-top: 64px; padding-bottom: 40px; display: grid; gap: 28px; }
 .footer .mono { color: rgba(17, 17, 17, .62); }
@@ -201,25 +218,45 @@ a.card:hover { border-color: var(--ink); }
   .plate .frame { aspect-ratio: 4 / 5; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Underlines draw in from the left on hover */
+@keyframes draw-1 { from { background-size: 0 1px; } to { background-size: 100% 1px; } }
+@keyframes draw-3 { from { background-size: 0 3px; } to { background-size: 100% 3px; } }
+@keyframes draw-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.feature h2, .card h3 { text-decoration: none; }
+.u { background: linear-gradient(var(--mark, var(--violet)), var(--mark, var(--violet))) left 100% / 100% 3px no-repeat; padding-bottom: 4px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.card[data-mark="teal"] { --mark: var(--teal); }
+.card[data-mark="blue"] { --mark: var(--blue); }
+.card:hover .u, .feature:hover .u { animation: draw-3 .5s var(--ease) both; }
+.next a, .footer-base a, .mixed a, .refs a, .plain a, .page-desc a, .about-links a {
+  text-decoration: none; padding-bottom: 2px;
+  background: linear-gradient(var(--ul, currentColor), var(--ul, currentColor)) left 100% / 100% 1px no-repeat;
+}
+.mixed a, .refs a, .plain a, .page-desc a, .about-links a { --ul: var(--violet); }
+.next a:hover, .footer-base a:hover, .mixed a:hover, .refs a:hover, .plain a:hover, .page-desc a:hover, .about-links a:hover { animation: draw-1 .45s var(--ease) both; }
+.vlink, .page-links a { background: none; }
+.crumbs a { padding-bottom: 3px; background: linear-gradient(currentColor, currentColor) left 100% / 0 2px no-repeat; transition: background-size .35s var(--ease), color var(--dur) var(--ease); }
+.crumbs a:hover { background-size: 100% 2px; }
+.resume { text-decoration: none; position: relative; }
+.resume::after { content: ""; position: absolute; left: 8px; right: 8px; bottom: 3px; height: 1px; background: var(--blue); transform-origin: left center; }
+.resume:hover::after { animation: draw-x .45s var(--ease) both; }
+@media (prefers-reduced-motion: reduce) { .u, .crumbs a, .resume::after, a { animation: none !important; } }
 </style>
 </head>
 <body>
 <div class="bg" aria-hidden="true"></div>
 
-<nav class="nav" aria-label="Primary">
+<header class="nav">
   <div class="wrap nav-inner">
-    <div class="nav-id">
-      <a class="nav-name" href="#top">Han Zhang</a>
-      <span class="mono">Multidisciplinary Media Designer &amp; Researcher</span>
+    <a class="nav-home" href="#top" aria-label="Han Zhang, home"><img class="nav-logo" src="assets/logo-solid.svg" alt="" width="46" height="46"></a>
+    <div class="search">
+      <input id="site-search" type="search" placeholder="Search Han’s archive" autocomplete="off" aria-label="Search projects">
+      <ul id="search-results" hidden></ul>
     </div>
-    <div class="nav-links mono">
-      <a href="#works" data-nav="home">Works</a>
-      <a href="#experiments" data-nav="experiments">Experiments</a>
-      <a href="#about" data-nav="about">About</a>
-      <a href="#contact">Contact</a>
-    </div>
+    <span class="mono nav-role">Multidisciplinary Media Designer &amp; Researcher</span>
   </div>
-</nav>
+</header>
+<nav class="wrap crumbs" id="crumbs" aria-label="Primary"></nav>
 
 <!-- ============ HOME ============ -->
 <div data-view="home" id="top">
@@ -249,8 +286,7 @@ a.card:hover { border-color: var(--ink); }
 <!-- ============ EXPERIMENTS ============ -->
 <section data-view="experiments" hidden>
   <div class="wrap page">
-    <a class="mono back" href="#works">← All work</a>
-    <p class="mono eyebrow">Other experiments</p>
+
     <h1 class="page-title">Experiments</h1>
     <p class="hero-desc">Smaller studies, coding exercises and works in progress.</p>
 
@@ -395,12 +431,12 @@ a.card:hover { border-color: var(--ink); }
         var facts = (p.facts || []).map(function (x) { return '<li><b>' + esc(x[0]) + '</b>' + esc(x[1]) + '</li>'; }).join('');
         feat = '<a class="feature" ' + href(p) + ' data-cats="' + esc(cats.join(' ')) + '"><div class="feature-fig">' + media(p.cover) + '</div><div class="feature-body">' +
           (p.tags && p.tags.length ? '<ul class="tags mono">' + p.tags.map(function (t) { return '<li>#' + esc(t) + '</li>'; }).join('') + '</ul>' : '<div class="card-top"><span class="mono">' + esc(first.short) + '</span></div>') +
-          '<h2>' + esc(p.title) + '</h2><p>' + rich(p.summary) + '</p>' + (facts ? '<ul class="facts mono">' + facts + '</ul>' : '') +
+          '<h2><span class="u">' + esc(p.title) + '</span></h2><p>' + rich(p.summary) + '</p>' + (facts ? '<ul class="facts mono">' + facts + '</ul>' : '') +
           '<div class="foot"><span class="mono">' + esc(p.date) + '</span><span class="mono cta">' + go(p) + '</span></div></div></a>';
       } else {
         grid += '<a class="card" data-mark="' + MARKS[i % 3] + '" data-cats="' + esc(cats.join(' ')) + '" ' + href(p) + '><div class="card-fig">' + media(p.cover) + '</div><div class="card-body">' +
           '<div class="card-top"><span class="mono">' + pad(i + 1) + '</span><span class="mono">' + esc(first.short) + '</span></div>' +
-          '<h3>' + esc(p.title) + '</h3><p>' + rich(p.summary) + '</p>' +
+          '<h3><span class="u">' + esc(p.title) + '</span></h3><p>' + rich(p.summary) + '</p>' +
           '<div class="foot"><span class="mono">' + esc(p.date) + '</span><span class="mono cta">' + go(p) + '</span></div></div></a>';
       }
     });
@@ -430,7 +466,7 @@ a.card:hover { border-color: var(--ink); }
       (g.items || []).forEach(function (x, i) {
         var tag = x.url ? 'a' : 'div';
         out += '<' + tag + ' class="card" data-mark="' + MARKS[i % 3] + '"' + (x.url ? ' href="' + esc(x.url) + '" target="_blank" rel="noopener"' : '') + '><div class="card-fig">' + media(x.cover) + '</div><div class="card-body">' +
-          '<span class="mono">' + esc(x.note) + '</span><h3>' + esc(x.title) + '</h3>' + (x.soon ? '<span class="mono soon">Coming soon</span>' : '') + '</div></' + tag + '>';
+          '<span class="mono">' + esc(x.note) + '</span><h3><span class="u">' + esc(x.title) + '</span></h3>' + (x.soon ? '<span class="mono soon">Coming soon</span>' : '') + '</div></' + tag + '>';
       });
       out += '</div>';
     });
@@ -439,7 +475,7 @@ a.card:hover { border-color: var(--ink); }
 
   function renderAbout() {
     var a = D.about; if (!a) return;
-    var out = '<a class="mono back" href="#works">← All work</a><h1 class="page-title">' + esc(a.title || 'About Me') + '</h1>' +
+    var out = '<h1 class="page-title">' + esc(a.title || 'About Me') + '</h1>' +
       '<div class="about"><div>' + (a.paragraphs || []).map(function (t) { return '<p class="page-desc">' + rich(t) + '</p>'; }).join('') +
       (a.resume ? '<p class="page-links" style="margin:8px 0 0"><a class="cta mono" href="' + esc(a.resume) + '" target="_blank" rel="noopener">See my resume ↗</a></p>' : '') + '</div>' +
       '<dl class="about-links">' + (a.links || []).map(function (l) { return '<div><dt class="mono">' + esc(l[0]) + '</dt><dd><a href="' + esc(l[2]) + '" target="_blank" rel="noopener">' + esc(l[1]) + '</a></dd></div>'; }).join('') + '</dl></div>';
@@ -478,8 +514,7 @@ a.card:hover { border-color: var(--ink); }
 
   function renderProject(p) {
     var i = D.projects.indexOf(p), pg = p.page, next = D.projects[(i + 1) % D.projects.length];
-    var out = '<a class="mono back" href="#works">← All work</a>' +
-      '<h1 class="page-title">' + esc(p.title) + '</h1>' + (pg.lede ? '<p class="page-lede">' + rich(pg.lede) + '</p>' : '');
+    var out = '<h1 class="page-title">' + esc(p.title) + '</h1>' + (pg.lede ? '<p class="page-lede">' + rich(pg.lede) + '</p>' : '');
     var tagCell = p.tags && p.tags.length ? '<div><dt class="mono">Tags</dt><dd><ul class="tags">' + p.tags.map(function (t) { return '<li>#' + esc(t) + '</li>'; }).join('') + '</ul></dd></div>' : '';
     if ((pg.meta && pg.meta.length) || tagCell) out += '<dl class="meta">' + (pg.meta || []).map(function (m) { return '<div><dt class="mono">' + esc(m[0]) + '</dt><dd>' + esc(m[1]) + '</dd></div>'; }).join('') + tagCell + '</dl>';
     if (pg.description) out += String(pg.description).split(/\n\n+/).map(function (t) { return '<p class="page-desc">' + rich(t) + '</p>'; }).join('');
@@ -515,10 +550,11 @@ a.card:hover { border-color: var(--ink); }
     var key = proj ? 'project:' + h : name, changed = key !== current; current = key;
     if (proj && changed) renderProject(proj);
     views.forEach(function (v) { v.hidden = v.getAttribute('data-view') !== name; });
-    [].forEach.call(document.querySelectorAll('[data-nav]'), function (a) {
-      var on = a.getAttribute('data-nav') === (name === 'project' ? 'home' : name);
-      if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
-    });
+    var tabs = [['home', 'Works', '#works'], ['experiments', 'Experiments', '#experiments'], ['about', 'About', '#about']];
+    var c = '<a href="#top">Han Zhang</a><i>/</i>';
+    if (proj) c += '<a href="#works">Works</a><i>/</i><span class="on" aria-current="page">' + esc(proj.title) + '</span>';
+    else c += tabs.map(function (t) { return '<a href="' + t[2] + '"' + (t[0] === name ? ' class="on" aria-current="page"' : '') + '>' + t[1] + '</a>'; }).join('<i>·</i>');
+    document.getElementById('crumbs').innerHTML = c;
     collect(); all(0);
     var target = name === 'home' && h && h !== 'top' ? document.getElementById(h) : null;
     if (h === 'contact') target = document.getElementById('contact');
@@ -526,6 +562,35 @@ a.card:hover { border-color: var(--ink); }
     else if (changed || h === 'top') window.scrollTo(0, 0);
   }
   renderHome(); renderExperiments(); renderAbout();
+
+  // ---------- Search ----------
+  (function () {
+    var input = document.getElementById('site-search'), list = document.getElementById('search-results');
+    var index = [];
+    D.projects.forEach(function (p) {
+      index.push({ title: p.title, kind: cat((p.categories || [])[0]).short, href: p.page ? '#' + p.id : (p.url || '#works'),
+        text: [p.title, p.summary, (p.tags || []).join(' '), (p.categories || []).map(function (c) { return cat(c).label; }).join(' '), p.date, p.page ? p.page.lede : ''].join(' ').toLowerCase() });
+    });
+    (D.experiments || []).forEach(function (g) { (g.items || []).forEach(function (x) {
+      index.push({ title: x.title, kind: 'Experiment', href: x.url || '#experiments', text: [x.title, x.note, g.title, 'experiment'].join(' ').toLowerCase() });
+    }); });
+    function show() {
+      var q = input.value.trim().toLowerCase();
+      if (!q) { list.hidden = true; list.innerHTML = ''; return; }
+      var hits = index.filter(function (it) { return q.split(/\s+/).every(function (w) { return it.text.indexOf(w) > -1; }); }).slice(0, 8);
+      list.innerHTML = hits.length ? hits.map(function (it) { return '<li><a href="' + esc(it.href) + '"><b>' + esc(it.title) + '</b><span>' + esc(it.kind) + '</span></a></li>'; }).join('') : '<li class="none">No matches</li>';
+      list.hidden = false;
+    }
+    function close() { list.hidden = true; }
+    input.addEventListener('input', show);
+    input.addEventListener('focus', show);
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { input.value = ''; close(); input.blur(); }
+      if (e.key === 'Enter') { var first = list.querySelector('a'); if (first) { location.hash = first.getAttribute('href'); input.value = ''; close(); input.blur(); } }
+    });
+    list.addEventListener('click', function (e) { if (e.target.closest('a')) { input.value = ''; close(); } });
+    document.addEventListener('click', function (e) { if (!e.target.closest('.search')) close(); });
+  })();
   window.addEventListener('hashchange', route);
   route();
 
@@ -538,13 +603,13 @@ a.card:hover { border-color: var(--ink); }
   if (!still && window.jQuery && jQuery.fn.ripples) {
     try {
       var $bg = jQuery('.bg');
-      // Larger, softer: lower resolution spreads each wave wider; wide drops with a light push.
-      $bg.ripples({ resolution: 160, dropRadius: 34, perturbance: 0.006, interactive: false });
+      // Large, soft, clearly visible: low resolution spreads each wave wide; wide drops with a firmer push.
+      $bg.ripples({ resolution: 160, dropRadius: 34, perturbance: 0.016, interactive: false });
       document.addEventListener('mousemove', function (e) {
         var r = Math.random();
         try {
-          if (r > 0.86 && r <= 0.93) $bg.ripples('drop', e.clientX, e.clientY, 34, 0.006);
-          else if (r > 0.93 && r <= 0.96) $bg.ripples('drop', e.clientX, e.clientY, 20, 0.003);
+          if (r > 0.86 && r <= 0.93) $bg.ripples('drop', e.clientX, e.clientY, 34, 0.014);
+          else if (r > 0.93 && r <= 0.96) $bg.ripples('drop', e.clientX, e.clientY, 20, 0.008);
         } catch (err) {}
       });
     } catch (err) {}
