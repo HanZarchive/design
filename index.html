@@ -57,46 +57,49 @@ img { display: block; max-width: 100%; }
 
 /* Nav */
 /* Glass bar: a floating frosted panel over the stone, light text */
-.nav { position: sticky; top: 12px; z-index: 10; padding: 12px var(--gutter) 0; pointer-events: none; }
+.nav { position: sticky; top: 0; z-index: 10; isolation: isolate; color: var(--ink); }
 .nav .mono { color: var(--ink-55); }
-.nav .nav-inner {
-  display: flex; align-items: center; gap: 10px 16px; pointer-events: auto;
-  max-width: calc(var(--measure) - 2 * var(--gutter)); margin: 0 auto; padding: 9px 18px;
-  color: var(--ink);
-  background: rgba(22, 22, 24, .86);
-  border: 1px solid rgba(255, 255, 255, .22);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .28), inset 0 -1px 0 rgba(255, 255, 255, .06);
+.nav .nav-inner { display: flex; align-items: center; gap: 10px 16px; padding-top: 14px; padding-bottom: 14px; }
+/* The glass is its own full-width layer: invisible at the top of the page, fades in on hover or once the page has scrolled. */
+.nav::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: rgba(22, 22, 24, .82);
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .22), inset 0 -1px 0 rgba(255, 255, 255, .04);
+  opacity: 0; transition: opacity .45s var(--ease);
 }
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .nav .nav-inner {
-    background: linear-gradient(135deg, rgba(255, 255, 255, .2), rgba(255, 255, 255, .06) 45%, rgba(255, 255, 255, .1));
-    -webkit-backdrop-filter: blur(18px) saturate(1.7) brightness(1.15);
-    backdrop-filter: blur(18px) saturate(1.7) brightness(1.15);
+  .nav::before {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .05));
+    -webkit-backdrop-filter: blur(18px) saturate(1.6) brightness(1.1);
+    backdrop-filter: blur(18px) saturate(1.6) brightness(1.1);
   }
 }
+.nav:hover::before, .nav:focus-within::before, .nav.is-glass::before { opacity: 1; }
 .nav-home { display: inline-flex; flex: none; }
 .nav-logo { width: 34px; height: auto; display: block; image-rendering: pixelated; filter: saturate(1.3) brightness(1.25); }
-.nav-role { margin-left: auto; white-space: nowrap; }
+.nav-name { margin-left: auto; white-space: nowrap; font-family: var(--font-display); font-size: 23px; line-height: 1; color: var(--ink); text-decoration: none; }
+.hero-role { margin: -6px 0 16px; font-family: var(--font-title); font-size: 17px; color: var(--ink); }
 .crumbs { font-family: var(--font-title); font-size: 22px; line-height: 1.2; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 11px; }
 .crumbs a { color: var(--ink-70); text-decoration: none; transition: color var(--dur) var(--ease); }
 .crumbs a:hover { color: #fff; }
 .crumbs .on { color: #fff; }
 .crumbs i { font-style: normal; color: var(--ink-55); }
-@media (max-width: 860px) { .nav-role { display: none; } }
-@media (max-width: 520px) { .crumbs { font-size: 18px; } .nav-logo { width: 28px; } }
+
+@media (max-width: 520px) { .crumbs { font-size: 17px; gap: 2px 8px; } .nav-logo { width: 28px; } .nav-name { font-size: 19px; } .nav .nav-inner { padding-top: 10px; padding-bottom: 10px; gap: 8px 10px; } }
 
 /* Hero */
-.hero { padding-top: 56px; padding-bottom: 40px; }
+.hero { padding-top: 48px; padding-bottom: 40px; }
 .hero h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 3.6vw, 40px); line-height: 1.05; letter-spacing: -.01em; margin: 18px 0; text-wrap: balance; }
 .hero-desc { max-width: 62ch; margin: 0; font-size: 16.5px; font-weight: 300; line-height: 1.55; color: var(--ink-70); }
-.resume { display: inline-block; margin-top: 22px; padding: 3px 8px; font-family: var(--font-title); font-size: 16px; color: var(--ink); background: rgba(169, 126, 255, .35); text-decoration: underline; text-decoration-color: var(--blue); text-underline-offset: 4px; transition: background var(--dur) var(--ease); }
+.resume { display: inline-block; margin-top: 22px; padding: 3px 8px; font-family: var(--font-title); font-size: 16px; color: var(--ink); background: rgba(169, 126, 255, .35); text-decoration: underline; text-decoration-color: #fff; text-underline-offset: 4px; transition: background var(--dur) var(--ease); }
 .resume:hover { background: rgba(169, 126, 255, .6); }
 
 /* Featured */
 .section-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
 .feature { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); text-decoration: none; border: 1px solid var(--ink); background: var(--ground-raised); }
 .feature-fig { aspect-ratio: 16 / 10; background: #000; border-right: 1px solid var(--rule); min-height: 100%; }
-.feature-fig img { width: 100%; height: 100%; object-fit: cover; }
+.feature-fig img { width: 100%; height: 100%; object-fit: contain; }
 .plate img, .plate video { width: 100%; }
 .tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 2px 14px; }
 .feature-body { display: flex; flex-direction: column; gap: 16px; padding: clamp(22px, 3vw, 40px); }
@@ -133,7 +136,7 @@ a.card:hover { border-color: var(--ink); }
 .card p { margin: 0; color: var(--ink-70); font-size: 14.5px; line-height: 1.5; }
 
 /* Sub-pages */
-.page { padding-top: 44px; padding-bottom: 96px; }
+.page { padding-top: 40px; padding-bottom: 96px; }
 .back { display: inline-block; color: var(--ink); text-underline-offset: 5px; margin-bottom: 44px; }
 .page-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(34px, 4.2vw, 48px); line-height: 1.05; margin: 18px 0 14px; text-wrap: balance; }
 .page-lede { font-family: var(--font-body); font-size: 18px; font-weight: 400; line-height: 1.4; margin: 0 0 32px; color: var(--ink); }
@@ -243,7 +246,7 @@ a.card:hover { border-color: var(--ink); }
 .crumbs a { padding-bottom: 3px; background: linear-gradient(currentColor, currentColor) left 100% / 0 2px no-repeat; transition: background-size .35s var(--ease), color var(--dur) var(--ease); }
 .crumbs a:hover { background-size: 100% 2px; }
 .resume { text-decoration: none; position: relative; }
-.resume::after { content: ""; position: absolute; left: 8px; right: 8px; bottom: 3px; height: 1px; background: var(--blue); transform-origin: left center; }
+.resume::after { content: ""; position: absolute; left: 8px; right: 8px; bottom: 3px; height: 1px; background: #fff; transform-origin: left center; }
 .resume:hover::after { animation: draw-x .45s var(--ease) both; }
 @media (prefers-reduced-motion: reduce) { .u, .crumbs a, .resume::after, a { animation: none !important; } }
 </style>
@@ -255,7 +258,7 @@ a.card:hover { border-color: var(--ink); }
   <div class="wrap nav-inner">
     <a class="nav-home" href="#top" aria-label="Han Zhang, home"><img class="nav-logo" src="assets/logo-pixel.svg" alt="" width="34" height="32"></a>
     <nav class="crumbs" id="crumbs" aria-label="Primary"></nav>
-    <span class="mono nav-role">Multidisciplinary Media Designer &amp; Researcher</span>
+    <a class="nav-name" href="#top">Han Zhang</a>
   </div>
 </header>
 
@@ -263,6 +266,7 @@ a.card:hover { border-color: var(--ink); }
 <div data-view="home" id="top">
   <header class="wrap hero">
     <h1>Welcome to Han’s archive!</h1>
+    <p class="hero-role">Multidisciplinary Media Designer &amp; Researcher</p>
     <p class="hero-desc">I explore how AI systems process cultural ambiguity in language, and how that processing in turn shapes human cognition and meaning-making. I build with rules, data and constraints: visualizations, installations and interactive pieces.</p>
     <a class="resume" href="assets/Resume-Han-Zhang-June2026.pdf" target="_blank" rel="noopener">See my resume here →</a>
   </header>
@@ -552,9 +556,9 @@ a.card:hover { border-color: var(--ink); }
     if (proj && changed) renderProject(proj);
     views.forEach(function (v) { v.hidden = v.getAttribute('data-view') !== name; });
     var tabs = [['home', 'Works', '#works'], ['experiments', 'Experiments', '#experiments'], ['about', 'About', '#about']];
-    var c = '<a href="#top">Han Zhang</a><i>/</i>';
-    if (proj) c += '<a href="#works">Works</a><i>/</i><span class="on" aria-current="page">' + esc(proj.title) + '</span>';
-    else c += tabs.map(function (t) { return '<a href="' + t[2] + '"' + (t[0] === name ? ' class="on" aria-current="page"' : '') + '>' + t[1] + '</a>'; }).join('<i>·</i>');
+    var c = '';
+    if (proj) c = '<a href="#works">Works</a><i>/</i><span class="on" aria-current="page">' + esc(proj.title) + '</span>';
+    else c = tabs.map(function (t) { return '<a href="' + t[2] + '"' + (t[0] === name ? ' class="on" aria-current="page"' : '') + '>' + t[1] + '</a>'; }).join('<i>·</i>');
     document.getElementById('crumbs').innerHTML = c;
     collect(); all(0);
     var target = name === 'home' && h && h !== 'top' ? document.getElementById(h) : null;
@@ -564,6 +568,9 @@ a.card:hover { border-color: var(--ink); }
   }
   renderHome(); renderExperiments(); renderAbout();
 
+  var navEl = document.querySelector('.nav');
+  function glass() { navEl.classList.toggle('is-glass', (window.pageYOffset || document.documentElement.scrollTop) > 8); }
+  window.addEventListener('scroll', glass, { passive: true }); glass();
   window.addEventListener('hashchange', route);
   route();
 

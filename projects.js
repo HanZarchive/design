@@ -55,7 +55,7 @@ window.PORTFOLIO = {
       featured: true,
       tags: ["Data Visualization", "Critical AI Studies", "Computational Art", "Multilingual NLP"],
       summary: "A data visualization project measuring and rendering the cross-lingual semantic divergence of abstract social value concepts in AI embedding space as branching tree structures.",
-      cover: { fig: "trees", alt: "Four generated trees, one per language: English, Chinese, Spanish and Russian" },
+      cover: { src: "assets/lit-cover.webp", alt: "Lost in Translation: L-system trees for four languages" },
       page: {
         lede: "If you ask an AI what \"Freedom\" means in English, then ask again in Chinese—does it give the same answer?",
         meta: [
