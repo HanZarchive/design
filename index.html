@@ -60,7 +60,7 @@ img { display: block; max-width: 100%; }
 .nav .mono { color: rgba(17, 17, 17, .66); }
 .nav-inner { display: flex; align-items: center; gap: 12px 18px; padding-top: 6px; padding-bottom: 6px; }
 .nav-home { display: inline-flex; flex: none; }
-.nav-logo { width: 46px; height: 46px; display: block; filter: saturate(1.35) drop-shadow(0 0 1px rgba(94, 6, 170, .35)); }
+.nav-logo { width: 64px; height: auto; display: block; image-rendering: pixelated; filter: saturate(1.35) drop-shadow(0 0 1px rgba(94, 6, 170, .35)); }
 .nav-role { margin-left: auto; white-space: nowrap; }
 .search { position: relative; flex: 1 1 auto; max-width: 420px; }
 .search input { width: 100%; font: inherit; font-size: 15px; color: var(--paper-ink); background: rgba(255, 255, 255, .18); border: 1px solid rgba(17, 17, 17, .55); padding: 8px 12px; outline-offset: 2px; }
@@ -248,7 +248,7 @@ a.card:hover { border-color: var(--ink); }
 
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="nav-home" href="#top" aria-label="Han Zhang, home"><img class="nav-logo" src="assets/logo-solid.svg" alt="" width="46" height="46"></a>
+    <a class="nav-home" href="#top" aria-label="Han Zhang, home"><img class="nav-logo" src="assets/logo-pixel.svg" alt="" width="64" height="60"></a>
     <div class="search">
       <input id="site-search" type="search" placeholder="Search Han’s archive" autocomplete="off" aria-label="Search projects">
       <ul id="search-results" hidden></ul>
