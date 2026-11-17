@@ -602,7 +602,7 @@ window.PORTFOLIO = {
       "I'm a designer, researcher, and creative technologist based in Los Angeles. Previously working in UX research and product strategy in Shanghai, I’m currently pursuing an MFA in Media Design Practices at ArtCenter.",
       "My work explores how AI systems process cultural ambiguity in language, and how such processing in turn shapes human cognition and meaning-making."
     ],
-    resume: "assets/Resume-Han-Zhang-June2026.pdf",
+    resume: "assets/Resume-Han-Zhang.pdf",
     links: [
       ["Email", "gracehan2333@gmail.com", "mailto:gracehan2333@gmail.com"],
       ["LinkedIn", "hanzhang233", "https://www.linkedin.com/in/hanzhang233/"],

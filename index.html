@@ -312,8 +312,8 @@ button.vlink { width: 100%; padding: 0; font: inherit; color: inherit; cursor: p
   <header class="wrap hero">
     <h1>Welcome to Han’s archive!</h1>
     <p class="hero-role">Multidisciplinary Media Designer &amp; Researcher</p>
-    <p class="hero-desc">I explore how AI systems process cultural ambiguity in language, and how that processing in turn shapes human cognition and meaning-making. I build with rules, data and constraints: visualizations, installations and interactive pieces.</p>
-    <a class="resume" href="assets/Resume-Han-Zhang-June2026.pdf" target="_blank" rel="noopener">See my resume here →</a>
+    <p class="hero-desc" id="hero-desc">I explore how AI systems process cultural ambiguity in language, and how that processing in turn shapes human cognition and meaning-making. I build with rules, data and constraints: visualizations, installations and interactive pieces.</p>
+    <a class="resume" href="assets/Resume-Han-Zhang.pdf" target="_blank" rel="noopener">See my resume here →</a>
   </header>
 
   <main class="wrap works" id="works">
@@ -354,7 +354,7 @@ button.vlink { width: 100%; padding: 0; font: inherit; color: inherit; cursor: p
     <h2>Let’s have a chat!</h2>
     <div class="footer-actions mono">
       <a href="mailto:gracehan2333@gmail.com">gracehan2333@gmail.com</a>
-      <a href="assets/Resume-Han-Zhang-June2026.pdf" target="_blank" rel="noopener">Resume ↗</a>
+      <a href="assets/Resume-Han-Zhang.pdf" target="_blank" rel="noopener">Resume ↗</a>
       <a href="#about">About me</a>
     </div>
     <div class="footer-base mono">
@@ -546,7 +546,7 @@ button.vlink { width: 100%; padding: 0; font: inherit; color: inherit; cursor: p
       (a.resume ? '<p class="page-links" style="margin:8px 0 0"><a class="cta mono" href="' + esc(a.resume) + '" target="_blank" rel="noopener">See my resume ↗</a></p>' : '') + '</div>' +
       '<dl class="about-links">' + (a.links || []).map(function (l) { return '<div><dt class="mono">' + esc(l[0]) + '</dt><dd><a href="' + esc(l[2]) + '" target="_blank" rel="noopener">' + esc(l[1]) + '</a></dd></div>'; }).join('') + '</dl></div>';
     document.getElementById('about-page').innerHTML = out;
-    [].forEach.call(document.querySelectorAll('a[href$="Resume-Han-Zhang-June2026.pdf"]'), function (el) { if (a.resume) el.setAttribute('href', a.resume); });
+    [].forEach.call(document.querySelectorAll('a[href$="Resume-Han-Zhang.pdf"]'), function (el) { if (a.resume) el.setAttribute('href', a.resume); });
   }
 
   function block(b) {
@@ -673,6 +673,14 @@ button.vlink { width: 100%; padding: 0; font: inherit; color: inherit; cursor: p
     if (!changed) return;
     var rest = q.toString();
     history.replaceState(history.state, '', location.pathname + (rest ? '?' + rest : '') + location.hash);
+  })();
+  // The intro paragraph on the home page matches the width of the featured card below it.
+  (function heroWidth() {
+    var d = document.getElementById('hero-desc'), grid = document.getElementById('grid');
+    if (!d || !grid) return;
+    function sync() { var f = grid.querySelector('.feature'); if (f && f.offsetWidth) d.style.maxWidth = f.offsetWidth + 'px'; }
+    if (window.ResizeObserver) new ResizeObserver(sync).observe(grid); else window.addEventListener('resize', sync);
+    sync();
   })();
   function setFold(sec, folded) {
     if (!sec) return;
