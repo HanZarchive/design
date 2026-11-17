@@ -212,6 +212,22 @@ a.card:hover { border-color: var(--ink); }
 .code { margin: 0; padding: 14px 16px; border: 1px solid var(--rule); background: rgba(255, 255, 255, .04); font-family: var(--font-mono); font-size: 13px; line-height: 1.7; color: var(--ink); overflow-x: auto; white-space: pre; }
 button.vlink { width: 100%; padding: 0; font: inherit; color: inherit; cursor: pointer; }
 .sec { scroll-margin-top: 72px; }
+/* section labels: the dash is a fold toggle (dash = open, plus = folded) */
+.sec .eyebrow::before { content: none; }
+.fold { display: inline-flex; align-items: center; gap: 12px; margin: 0; padding: 0; border: 0; background: none; color: inherit; font: inherit; letter-spacing: inherit; text-align: left; cursor: pointer; transition: color var(--dur) var(--ease); }
+.fold:hover { color: var(--ink); }
+.fold:focus-visible { outline: 2px solid var(--violet); outline-offset: 4px; }
+.fold-mark { position: relative; flex: none; width: 28px; height: 13px; }
+.fold-mark::before, .fold-mark::after { content: ""; position: absolute; background: var(--ink); transition: width .35s var(--ease), transform .35s var(--ease); }
+.fold-mark::before { left: 0; top: 6px; width: 28px; height: 1px; }
+.fold-mark::after { left: 6px; top: 0; width: 1px; height: 13px; transform: scaleY(0); }
+.fold:hover .fold-mark::before { width: 36px; }
+.sec.is-folded .fold-mark::before, .sec.is-folded .fold:hover .fold-mark::before { width: 13px; }
+.sec.is-folded .fold-mark::after { transform: scaleY(1); }
+.sec-body { display: grid; grid-template-rows: 1fr; min-width: 0; transition: grid-template-rows .45s var(--ease), opacity .35s var(--ease); }
+.sec-inner { min-height: 0; min-width: 0; overflow: hidden; padding: 4px; margin: -4px; }
+.sec.is-folded .sec-body { grid-template-rows: 0fr; opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .sec-body, .fold-mark::before, .fold-mark::after { transition: none; } }
 .plain { margin: 0; padding-left: 18px; color: var(--ink-70); font-size: 15px; display: grid; gap: 8px; }
 .refs { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; color: var(--ink-70); }
 .next { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--ink); padding-top: 20px; margin-top: 12px; }
@@ -562,7 +578,7 @@ button.vlink { width: 100%; padding: 0; font: inherit; color: inherit; cursor: p
     else if (b.type === 'video' && b.youtube) body = '<div class="hero-media">' + video(b) + cap + '</div>';
     else if (b.type === 'video') body = '<div><figure class="plate"><video src="' + esc(b.src) + '" controls muted loop playsinline></video></figure>' + cap + '</div>';
     if (!b.label) return body;
-    return '<section class="sec"' + (b.id ? ' id="' + esc(b.id) + '"' : '') + '><h2 class="mono eyebrow">' + esc(b.label) + '</h2>' + body + '</section>';
+    return '<section class="sec"' + (b.id ? ' id="' + esc(b.id) + '"' : '') + '><h2 class="mono eyebrow"><button type="button" class="fold" aria-expanded="true"><span class="fold-mark" aria-hidden="true"></span>' + esc(b.label) + '</button></h2><div class="sec-body"><div class="sec-inner">' + body + '</div></div></section>';
   }
 
   function renderProject(p) {
@@ -645,6 +661,13 @@ button.vlink { width: 100%; padding: 0; font: inherit; color: inherit; cursor: p
   var navEl = document.querySelector('.nav');
   function glass() { navEl.classList.toggle('is-glass', (window.pageYOffset || document.documentElement.scrollTop) > 8); }
   window.addEventListener('scroll', glass, { passive: true }); glass();
+  function setFold(sec, folded) {
+    if (!sec) return;
+    sec.classList.toggle('is-folded', folded);
+    var b = sec.querySelector('.fold'), body = sec.querySelector('.sec-body');
+    if (b) b.setAttribute('aria-expanded', String(!folded));
+    if (body) { if (folded) body.setAttribute('inert', ''); else body.removeAttribute('inert'); }
+  }
   document.addEventListener('click', function (e) {
     var t = e.target && e.target.closest ? e.target : null; if (!t) return;
     var g = t.closest('[data-game]');
@@ -654,10 +677,13 @@ button.vlink { width: 100%; padding: 0; font: inherit; color: inherit; cursor: p
       fr.setAttribute('allow', 'autoplay; fullscreen *; gamepad'); fr.setAttribute('allowfullscreen', '');
       f.appendChild(fr); g.parentNode.replaceChild(f, g); return;
     }
+    var fb = t.closest('.fold');
+    if (fb) { setFold(fb.closest('.sec'), !fb.closest('.sec').classList.contains('is-folded')); return; }
     var sc = t.closest('[data-scroll]');
     if (sc) {
       e.preventDefault();
       var el = document.getElementById(sc.getAttribute('data-scroll')); if (!el) return;
+      if (el.classList.contains('is-folded')) setFold(el, false);
       // lazy images above the target would load mid-scroll and push it down, so load them first
       var imgs = [].slice.call(document.querySelectorAll('img[loading="lazy"]')).filter(function (im) { return im.compareDocumentPosition(el) & 4; });
       imgs.forEach(function (im) { im.loading = 'eager'; });
