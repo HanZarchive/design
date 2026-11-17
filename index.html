@@ -661,6 +661,19 @@ button.vlink { width: 100%; padding: 0; font: inherit; color: inherit; cursor: p
   var navEl = document.querySelector('.nav');
   function glass() { navEl.classList.toggle('is-glass', (window.pageYOffset || document.documentElement.scrollTop) > 8); }
   window.addEventListener('scroll', glass, { passive: true }); glass();
+  // Strip tracking parameters (Instagram / Facebook / Google add utm_*, fbclid etc.) from the address bar.
+  // Only the visible URL changes; the page does not reload and the #project part is kept.
+  (function cleanUrl() {
+    if (!window.URLSearchParams || !history.replaceState || !location.search) return;
+    var q = new URLSearchParams(location.search), keys = [], changed = false;
+    q.forEach(function (v, k) { keys.push(k); });
+    keys.forEach(function (k) {
+      if (/^(utm_.+|fbclid|gclid|dclid|msclkid|igshid|igsh|mc_cid|mc_eid|_ga)$/i.test(k)) { q.delete(k); changed = true; }
+    });
+    if (!changed) return;
+    var rest = q.toString();
+    history.replaceState(history.state, '', location.pathname + (rest ? '?' + rest : '') + location.hash);
+  })();
   function setFold(sec, folded) {
     if (!sec) return;
     sec.classList.toggle('is-folded', folded);
