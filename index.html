@@ -114,14 +114,16 @@ img { display: block; max-width: 100%; }
 
 /* Featured */
 .section-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
-.feature { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); text-decoration: none; border: 1px solid var(--ink); background: var(--ground-raised); }
-.feature-fig { aspect-ratio: 16 / 10; background: #000; border-right: 1px solid var(--rule); min-height: 100%; }
-.feature-fig img { width: 100%; height: 100%; object-fit: contain; }
+.feature { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); text-decoration: none; border: 1px solid var(--ink); background: var(--ground-raised); }
+@media (min-width: 800px) { .grid .feature { grid-column: span 2; } }
+.feature-fig { position: relative; overflow: hidden; background: #000; border-right: 1px solid var(--rule); min-height: 280px; }
+.feature-fig img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.feature-fig canvas { position: absolute; inset: 0; }
 .plate img, .plate video { width: 100%; }
 .tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 2px 14px; }
-.feature-body { display: flex; flex-direction: column; gap: 16px; padding: clamp(22px, 3vw, 40px); }
-.feature h2 { margin: 6px 0 0; font-family: var(--font-title); font-weight: 400; font-size: 28px; line-height: 1.1; text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 5px; text-decoration-color: var(--violet); }
-.feature p { margin: 0; color: var(--ink-70); font-size: 15.5px; line-height: 1.5; max-width: 46ch; }
+.feature-body { display: flex; flex-direction: column; gap: 12px; padding: 20px 22px; }
+.feature h2 { margin: 6px 0 0; font-family: var(--font-title); font-weight: 400; font-size: 24px; line-height: 1.12; text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 5px; text-decoration-color: var(--violet); }
+.feature p { margin: 0; color: var(--ink-70); font-size: 14.5px; line-height: 1.5; max-width: 46ch; }
 .facts { list-style: none; margin: 0; padding: 14px 0 0; display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 6px 32px; border-top: 1px solid var(--rule); }
 .facts b { display: block; font-family: var(--font-display); font-weight: 400; font-size: 20px; line-height: 1.2; color: var(--ink); font-variant-numeric: tabular-nums; }
 .foot { margin-top: auto; padding-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
@@ -142,7 +144,7 @@ a:hover > * .cta, a:hover > .cta, .feature:hover .cta, .card:hover .cta { backgr
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 24px; }
 .card { display: flex; flex-direction: column; text-decoration: none; border: 1px solid var(--rule); background: var(--ground-raised); transition: border-color var(--dur) var(--ease); }
 a.card:hover { border-color: var(--ink); }
-.card-fig { aspect-ratio: 4 / 3; background: #000; border-bottom: 1px solid var(--rule); overflow: hidden; }
+.card-fig { aspect-ratio: 16 / 9; background: #000; border-bottom: 1px solid var(--rule); overflow: hidden; }
 .card-fig img { width: 100%; height: 100%; object-fit: cover; }
 .card-body { flex: 1; display: flex; flex-direction: column; gap: 12px; padding: 20px 22px; }
 .card-top { display: flex; justify-content: space-between; gap: 12px; }
@@ -202,6 +204,14 @@ a.card:hover { border-color: var(--ink); }
 .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 8px; }
 .mixed > .shot { margin-top: 8px; }
 .slot { border: 1px dashed var(--rule); aspect-ratio: 16 / 9; display: grid; place-items: center; text-align: center; padding: 16px; }
+.tablewrap { overflow-x: auto; }
+.dtable { width: 100%; border-collapse: collapse; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+.dtable th { font-family: var(--font-title); font-weight: 400; font-size: 18px; text-align: left; color: var(--ink); padding: 0 14px 8px 0; border-bottom: 1px solid var(--ink-55); white-space: nowrap; }
+.dtable td { padding: 9px 14px 9px 0; border-bottom: 1px solid var(--rule); color: var(--ink-70); white-space: nowrap; }
+.dtable td:first-child { color: var(--ink); }
+.code { margin: 0; padding: 14px 16px; border: 1px solid var(--rule); background: rgba(255, 255, 255, .04); font-family: var(--font-mono); font-size: 13px; line-height: 1.7; color: var(--ink); overflow-x: auto; white-space: pre; }
+button.vlink { width: 100%; padding: 0; font: inherit; color: inherit; cursor: pointer; }
+.sec { scroll-margin-top: 72px; }
 .plain { margin: 0; padding-left: 18px; color: var(--ink-70); font-size: 15px; display: grid; gap: 8px; }
 .refs { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; color: var(--ink-70); }
 .next { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--ink); padding-top: 20px; margin-top: 12px; }
@@ -236,12 +246,14 @@ a.card:hover { border-color: var(--ink); }
 .footer-base a { color: var(--paper-ink); }
 
 @media (max-width: 860px) {
-  .feature { grid-template-columns: 1fr; }
-  .feature-fig { border-right: 0; border-bottom: 1px solid var(--rule); }
-  .sec { grid-template-columns: 1fr; }
+  .sec { grid-template-columns: minmax(0, 1fr); }
   .chip-link { margin-left: 0; }
   .plate .frame { aspect-ratio: 4 / 5; }
+}@media (max-width: 799px) {
+  .feature { grid-template-columns: 1fr; }
+  .feature-fig { border-right: 0; border-bottom: 1px solid var(--rule); min-height: 0; aspect-ratio: 16 / 9; }
 }
+
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 
 /* Underlines draw in from the left on hover */
@@ -426,6 +438,11 @@ a.card:hover { border-color: var(--ink); }
     if (canEmbed) return '<figure class="plate embed"><iframe src="https://www.youtube-nocookie.com/embed/' + id + '" title="' + esc(v.title) + '" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe></figure>';
     return '<a class="plate vlink" href="https://youtu.be/' + id + '" target="_blank" rel="noopener">' + (v.poster ? '<img src="' + esc(v.poster) + '" alt="' + esc(v.title) + '" loading="lazy">' : '') + '<span>▶ Watch the video on YouTube ↗</span></a>';
   }
+  function game(g) {
+    var poster = g.poster ? '<img src="' + esc(g.poster) + '" alt="' + esc(g.title) + '" loading="lazy">' : '';
+    if (canEmbed) return '<button type="button" class="plate vlink" data-game="' + esc(g.embed) + '" aria-label="Load the playable game">' + poster + '<span>▶ ' + esc(g.note || 'Click to play') + '</span></button>';
+    return '<a class="plate vlink" href="' + esc(g.url) + '" target="_blank" rel="noopener">' + poster + '<span>▶ Play it on itch.io ↗</span></a>';
+  }
   function pad(n) { return (n < 10 ? '0' : '') + n; }
   function cat(id) { for (var i = 0; i < D.categories.length; i++) if (D.categories[i].id === id) return D.categories[i]; return { id: id, label: id, short: id }; }
   function media(c) {
@@ -436,34 +453,42 @@ a.card:hover { border-color: var(--ink); }
   function href(p) { return p.page ? 'href="#' + esc(p.id) + '"' : 'href="' + esc(p.url || '#works') + '" target="_blank" rel="noopener"'; }
   function go(p) { return 'Read more…'; }
   var MARKS = ['', 'teal', 'blue'];
+  function accent(p) { return p && p.accent ? ' style="--mark:' + esc(p.accent) + '"' : ''; }
+
+  function isExp(p) { return (p.categories || []).indexOf('experiment') > -1; }
+  function mainProjects() { return D.projects.filter(function (p) { return !isExp(p); }); }
+  function byId(id) { for (var i = 0; i < D.projects.length; i++) if (D.projects[i].id === id) return D.projects[i]; return null; }
 
   function renderHome() {
-    var f = '<button class="chip" type="button" data-filter="all" aria-pressed="true">All<i>' + D.projects.length + '</i></button>';
+    var list = mainProjects();
+    var f = '<button class="chip" type="button" data-filter="all" aria-pressed="true">All<i>' + list.length + '</i></button>';
     D.categories.forEach(function (c) {
-      var n = D.projects.filter(function (p) { return (p.categories || []).indexOf(c.id) > -1; }).length;
+      var n = list.filter(function (p) { return (p.categories || []).indexOf(c.id) > -1; }).length;
+      if (!n) return;
       f += '<button class="chip" type="button" data-filter="' + esc(c.id) + '" aria-pressed="false">' + esc(c.label) + '<i>' + n + '</i></button>';
     });
     f += '<a class="chip chip-link" href="#experiments">Other experiments →</a>';
     document.getElementById('filters').innerHTML = f;
 
     var feat = '', grid = '';
-    D.projects.forEach(function (p, i) {
+    list.forEach(function (p, i) {
       var cats = (p.categories || []), first = cat(cats[0]);
       if (p.featured && !feat) {
         var facts = (p.facts || []).map(function (x) { return '<li><b>' + esc(x[0]) + '</b>' + esc(x[1]) + '</li>'; }).join('');
-        feat = '<a class="feature" ' + href(p) + ' data-cats="' + esc(cats.join(' ')) + '"><div class="feature-fig">' + media(p.cover) + '</div><div class="feature-body">' +
+        feat = '<a class="feature"' + accent(p) + ' ' + href(p) + ' data-cats="' + esc(cats.join(' ')) + '"><div class="feature-fig">' + media(p.cover) + '</div><div class="feature-body">' +
           (p.tags && p.tags.length ? '<ul class="tags mono">' + p.tags.map(function (t) { return '<li>#' + esc(t) + '</li>'; }).join('') + '</ul>' : '<div class="card-top"><span class="mono">' + esc(first.short) + '</span></div>') +
           '<h2><span class="u">' + esc(p.title) + '</span></h2><p>' + rich(p.summary) + '</p>' + (facts ? '<ul class="facts mono">' + facts + '</ul>' : '') +
           '<div class="foot"><span class="mono">' + esc(p.date) + '</span><span class="mono cta">' + go(p) + '</span></div></div></a>';
       } else {
-        grid += '<a class="card" data-mark="' + MARKS[i % 3] + '" data-cats="' + esc(cats.join(' ')) + '" ' + href(p) + '><div class="card-fig">' + media(p.cover) + '</div><div class="card-body">' +
-          '<div class="card-top"><span class="mono">' + pad(i + 1) + '</span><span class="mono">' + esc(first.short) + '</span></div>' +
+        var tag = p.soon ? 'div' : 'a';
+        grid += '<' + tag + ' class="card' + (p.soon ? ' is-soon' : '') + '" data-mark="' + MARKS[i % 3] + '"' + accent(p) + ' data-cats="' + esc(cats.join(' ')) + '"' + (p.soon ? '' : ' ' + href(p)) + '><div class="card-fig">' + media(p.cover) + '</div><div class="card-body">' +
+          '<div class="card-top"><span class="mono">' + esc(first.short) + '</span></div>' +
           '<h3><span class="u">' + esc(p.title) + '</span></h3><p>' + rich(p.summary) + '</p>' +
-          '<div class="foot"><span class="mono">' + esc(p.date) + '</span><span class="mono cta">' + go(p) + '</span></div></div></a>';
+          '<div class="foot"><span class="mono">' + esc(p.date) + '</span>' + (p.soon ? '<span class="mono soon">Coming soon</span>' : '<span class="mono cta">' + go(p) + '</span>') + '</div></div></' + tag + '>';
       }
     });
-    document.getElementById('feature').innerHTML = feat;
-    document.getElementById('grid').innerHTML = grid;
+    document.getElementById('feature').innerHTML = '';
+    document.getElementById('grid').innerHTML = feat + grid;
 
     var chips = [].slice.call(document.querySelectorAll('.chip[data-filter]'));
     var tiles = [].slice.call(document.querySelectorAll('[data-view="home"] [data-cats]'));
@@ -486,8 +511,11 @@ a.card:hover { border-color: var(--ink); }
     (D.experiments || []).forEach(function (g) {
       out += '<h2 class="mono eyebrow group-head">' + esc(g.title) + '</h2><div class="grid">';
       (g.items || []).forEach(function (x, i) {
-        var tag = x.url ? 'a' : 'div';
-        out += '<' + tag + ' class="card" data-mark="' + MARKS[i % 3] + '"' + (x.url ? ' href="' + esc(x.url) + '" target="_blank" rel="noopener"' : '') + '><div class="card-fig">' + media(x.cover) + '</div><div class="card-body">' +
+        var pr = x.project ? byId(x.project) : null;
+        if (pr) x = { title: pr.title, note: x.note || pr.summary, cover: pr.cover, ref: pr };
+        var tag = (x.url || x.ref) ? 'a' : 'div';
+        var link = x.ref ? ' ' + href(x.ref) : x.url ? ' href="' + esc(x.url) + '" target="_blank" rel="noopener"' : '';
+        out += '<' + tag + ' class="card" data-mark="' + MARKS[i % 3] + '"' + accent(x.ref) + link + '><div class="card-fig">' + media(x.cover) + '</div><div class="card-body">' +
           '<span class="mono">' + esc(x.note) + '</span><h3><span class="u">' + esc(x.title) + '</span></h3>' + (x.soon ? '<span class="mono soon">Coming soon</span>' : '') + '</div></' + tag + '>';
       });
       out += '</div>';
@@ -517,6 +545,9 @@ a.card:hover { border-color: var(--ink); }
       if (c.big) return '<p class="big">' + rich(c.big) + '</p>';
       if (c.video) return video(c.video);
       if (c.slot) return '<div class="slot mono">' + esc(c.slot) + '</div>';
+      if (c.table) return '<div class="tablewrap"><table class="dtable"><thead><tr>' + c.table.head.map(function (h) { return '<th>' + esc(h) + '</th>'; }).join('') + '</tr></thead><tbody>' + c.table.rows.map(function (r) { return '<tr>' + r.map(function (x) { return '<td>' + esc(x) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+      if (c.code) return '<pre class="code">' + esc(c.code) + '</pre>';
+      if (c.game) return game(c.game);
       if (c.p) return '<p>' + rich(c.p) + '</p>';
       if (c.ul) return '<ul class="plain">' + c.ul.map(function (t) { return '<li>' + rich(t) + '</li>'; }).join('') + '</ul>';
       if (c.img) return fig(c.img);
@@ -531,18 +562,19 @@ a.card:hover { border-color: var(--ink); }
     else if (b.type === 'video' && b.youtube) body = '<div class="hero-media">' + video(b) + cap + '</div>';
     else if (b.type === 'video') body = '<div><figure class="plate"><video src="' + esc(b.src) + '" controls muted loop playsinline></video></figure>' + cap + '</div>';
     if (!b.label) return body;
-    return '<section class="sec"><h2 class="mono eyebrow">' + esc(b.label) + '</h2>' + body + '</section>';
+    return '<section class="sec"' + (b.id ? ' id="' + esc(b.id) + '"' : '') + '><h2 class="mono eyebrow">' + esc(b.label) + '</h2>' + body + '</section>';
   }
 
   function renderProject(p) {
-    var i = D.projects.indexOf(p), pg = p.page, next = D.projects[(i + 1) % D.projects.length];
+    var sec = (isExp(p) ? D.projects.filter(isExp) : mainProjects()).filter(function (q) { return !q.soon; }), i = sec.indexOf(p), pg = p.page, next = sec[(i + 1) % sec.length];
+    var back = isExp(p) ? ['#experiments', '← All experiments'] : ['#works', '← All work'];
     var out = '<h1 class="page-title">' + esc(p.title) + '</h1>' + (pg.lede ? '<p class="page-lede">' + rich(pg.lede) + '</p>' : '');
     var tagCell = p.tags && p.tags.length ? '<div><dt class="mono">Tags</dt><dd><ul class="tags">' + p.tags.map(function (t) { return '<li>#' + esc(t) + '</li>'; }).join('') + '</ul></dd></div>' : '';
     if ((pg.meta && pg.meta.length) || tagCell) out += '<dl class="meta">' + (pg.meta || []).map(function (m) { return '<div><dt class="mono">' + esc(m[0]) + '</dt><dd>' + esc(m[1]) + '</dd></div>'; }).join('') + tagCell + '</dl>';
     if (pg.description) out += String(pg.description).split(/\n\n+/).map(function (t) { return '<p class="page-desc">' + rich(t) + '</p>'; }).join('');
-    if (pg.links && pg.links.length) out += '<p class="page-links">' + pg.links.map(function (l) { return '<a class="cta mono" href="' + esc(l[1]) + '" target="_blank" rel="noopener">' + esc(l[0]) + ' ↗</a>'; }).join('') + '</p>';
+    if (pg.links && pg.links.length) out += '<p class="page-links">' + pg.links.map(function (l) { return String(l[1]).charAt(0) === '@' ? '<a class="cta mono" href="#' + esc(p.id) + '" data-scroll="' + esc(l[1].slice(1)) + '">' + esc(l[0]) + ' ↓</a>' : '<a class="cta mono" href="' + esc(l[1]) + '" target="_blank" rel="noopener">' + esc(l[0]) + ' ↗</a>'; }).join('') + '</p>';
     out += (pg.blocks || []).map(block).join('');
-    out += '<div class="next mono"><a href="#works">← All work</a>' + (next && next !== p ? '<a ' + href(next) + '>Next: ' + esc(next.title) + (next.page ? ' →' : ' ↗') + '</a>' : '') + '</div>';
+    out += '<div class="next mono"><a href="' + back[0] + '">' + back[1] + '</a>' + (next && next !== p ? '<a ' + href(next) + '>Next: ' + esc(next.title) + (next.page ? ' →' : ' ↗') + '</a>' : '') + '</div>';
     document.getElementById('project').innerHTML = out;
   }
 
@@ -574,7 +606,7 @@ a.card:hover { border-color: var(--ink); }
     views.forEach(function (v) { v.hidden = v.getAttribute('data-view') !== name; });
     var tabs = [['home', 'Works', '#works'], ['experiments', 'Experiments', '#experiments'], ['about', 'About', '#about']];
     var c = '';
-    if (proj) c = '<a href="#works">Works</a><i>/</i><span class="on" aria-current="page">' + esc(proj.title) + '</span>';
+    if (proj) c = (isExp(proj) ? '<a href="#experiments">Experiments</a>' : '<a href="#works">Works</a>') + '<i>/</i><span class="on" aria-current="page">' + esc(proj.title) + '</span>';
     else c = tabs.map(function (t) { return '<a href="' + t[2] + '"' + (t[0] === name ? ' class="on" aria-current="page"' : '') + '>' + t[1] + '</a>'; }).join('<i>·</i>');
     document.getElementById('crumbs').innerHTML = c;
     collect(); all(0);
@@ -613,6 +645,30 @@ a.card:hover { border-color: var(--ink); }
   var navEl = document.querySelector('.nav');
   function glass() { navEl.classList.toggle('is-glass', (window.pageYOffset || document.documentElement.scrollTop) > 8); }
   window.addEventListener('scroll', glass, { passive: true }); glass();
+  document.addEventListener('click', function (e) {
+    var t = e.target && e.target.closest ? e.target : null; if (!t) return;
+    var g = t.closest('[data-game]');
+    if (g) {
+      var f = document.createElement('figure'), fr = document.createElement('iframe');
+      f.className = 'plate embed'; fr.src = g.getAttribute('data-game'); fr.title = 'Playable game';
+      fr.setAttribute('allow', 'autoplay; fullscreen *; gamepad'); fr.setAttribute('allowfullscreen', '');
+      f.appendChild(fr); g.parentNode.replaceChild(f, g); return;
+    }
+    var sc = t.closest('[data-scroll]');
+    if (sc) {
+      e.preventDefault();
+      var el = document.getElementById(sc.getAttribute('data-scroll')); if (!el) return;
+      // lazy images above the target would load mid-scroll and push it down, so load them first
+      var imgs = [].slice.call(document.querySelectorAll('img[loading="lazy"]')).filter(function (im) { return im.compareDocumentPosition(el) & 4; });
+      imgs.forEach(function (im) { im.loading = 'eager'; });
+      var ready = Promise.all(imgs.map(function (im) { return im.decode ? im.decode().catch(function () {}) : null; }));
+      Promise.race([ready, new Promise(function (r) { setTimeout(r, 1500); })]).then(function () {
+        var done = false, fix = function () { if (done) return; done = true; window.removeEventListener('scrollend', fix); if (Math.abs(el.getBoundingClientRect().top - 72) > 6) el.scrollIntoView({ block: 'start' }); };
+        window.addEventListener('scrollend', fix); setTimeout(fix, 1600);
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  });
   window.addEventListener('hashchange', route);
   route();
 

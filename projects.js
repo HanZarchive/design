@@ -5,7 +5,8 @@
      id          英文短名，用作网址（#id），只用小写字母、数字和连字符
      title       标题
      date        日期文字
-     categories  筛选分类，可多个，取值见下面 categories 的 id
+     categories  筛选分类，可多个，取值见下面 categories 的 id；写 ["experiment"] 的项目不进主页，
+                 只出现在 Experiments 页（在 experiments 里用 { project: "id" } 引用它）
      summary     卡片上的一两句简介
      cover       封面：{ src: "assets/xxx.jpg", alt: "图片描述" }
                  或代码生成的图：{ fig: "trees", alt: "..." }
@@ -13,6 +14,7 @@
      tags        （可选）["Data Visualization", ...]，显示成 #标签；置顶卡片和内容页顶部的 Tags 一栏都用它
      facts       （可选，置顶项目用）[["20", "concepts"], ...]
      url         没有内容页时，卡片跳转到的外部链接
+     soon        true 表示内容还没准备好：卡片不可点，显示 “Coming soon”
      page        （可选）有它就会生成站内内容页，结构见 Lost in Translation
                  page.lede 标题下的一句话；page.meta 信息栏；page.description 信息栏下方的项目描述
                  约定：meta 里 Role 的每个词首字母大写，如 "Research, Design, Development"
@@ -29,8 +31,14 @@
                          { h: "小节内的小标题" }  { big: "淡紫色大字引言" }
                          { video: { youtube: "视频ID", title, poster: "assets/封面.jpg" } }
                          { slot: "占位说明" }
+                         { table: { head: ["列名", ...], rows: [["...", ...], ...] } }  小表格
+                         { code: "多行代码\n第二行" }                                  代码块
+                         { game: { embed: "itch 的 embed-upload 地址", url: "itch 页面", poster, title, note } }
+                           可玩的游戏：先显示封面，点击后才加载（省流量）；其他环境显示封面加 itch 链接
+     任何一节都可以加 id: "play"，再在 page.links 里写 ["Play in browser", "@play"]，按钮就会滚动到这一节
      { type: "video",  youtube: "视频ID", title, poster }   通栏视频（部署到自己域名后直接播放，其他环境显示封面加链接）
      文字里可以写链接：[显示文字](https://...)
+     accent: "#6CCB5F"：项目主题色（主页卡片标题下划线用这个颜色；不写就按默认轮换）
      page.links：描述下方的按钮，[["Try the demo", "https://..."], ...]
      { type: "refs",   label, items: ["Harris (1954)", ...] }
      { type: "image",  label, src: "assets/xxx.jpg", alt, caption }
@@ -42,7 +50,7 @@ window.PORTFOLIO = {
 
   categories: [
     { id: "dataviz",     label: "Data Visualization",             short: "Data Visualization" },
-    { id: "graphic",     label: "Graphic Design",                 short: "Graphic Design" },
+    { id: "graphic",     label: "Visual & Graphic",               short: "Visual & Graphic" },
     { id: "interaction", label: "Interaction & Game Development", short: "Interaction & Game Dev" }
   ],
 
@@ -121,12 +129,88 @@ window.PORTFOLIO = {
       }
     },
     {
+      id: "climbing-a-lego-tree",
+      title: "Climbing a Lego tree!",
+      date: "October 2026",
+      categories: ["interaction"],
+      tags: ["Spatial Computing", "Game Development"],
+      accent: "#6CCB5F",
+      summary: "Transform a 3D-scanned object into a climbing environment that different characters can try out.",
+      cover: { src: "assets/cv-lego.webp", alt: "A small figure climbing a tree-shaped wall of Lego holds, with a parameter panel" },
+      page: {
+        lede: "Transform a 3D-scanned object into a climbing environment that different characters can try out.",
+        meta: [
+          ["Date", "October 2026"],
+          ["Role", "3D Scanning, Interaction Design, Unity Programming"],
+          ["Tools", "Unity (C#), Python, Blender"]
+        ],
+        description: "In this project, I scanned a physical LEGO Christmas tree and imported it into Unity to create a climbing prototype.\n\nThe character will find a path to the top of the tree based on its reach, strength, footwork and ability to plan ahead. Players can choose different characters and watch them climb autonomously, or switch to manual mode to select which hand or foot the character moves next, as well as where it should go.\n\nStarting with the initial goal of \u201cgetting a character to climb a scanned object\u201d, this project gradually evolved into an exploration of how different characters respond to the same environment.",
+        links: [["Play in browser", "@play"]],
+        blocks: [
+          { type: "video", youtube: "wDpxfCKLE_c", title: "Climbing a Lego tree!", poster: "assets/cv-lego.webp" },
+          { type: "mixed", label: "Starting Point",
+            content: [
+              { big: "Why Climbing? Affordance as a Bodily Interpretation" },
+              { p: "Since coming to the US, I started spending a lot of time in the climbing gym. I found that whether a surface protrusion can be used, or whether it even exists as an option, depends entirely on the body encountering it: arm span, finger strength, and how high a foot can step above the center of mass. In climbing culture, a routesetter writes down an intention on the wall, and a climber reads out a beta (a bodily sequence). The two frequently disagree." },
+              { p: "My ongoing design inquiry looks at how the same text or symbol produces different meanings when processed through different cultural or cognitive frames. Rock climbing is the most physical, bodily version of that exact phenomenon." }
+            ] },
+          { type: "mixed", label: "How to Play",
+            content: [
+              { p: "The game has two modes. In **Auto**, the climber finds its own way up, one move at a time, and sometimes gets stuck. In **Manual**, nothing moves until you do: click one of its hands or feet, then click one of the yellow holds that limb can reach." },
+              { p: "In both modes you can switch between four preset bodies, or drag the sliders to make your own: arm and leg reach, strength, footwork, boldness, how many moves it plans ahead, and how decisive it is. The tree and its holds never change. Only the body does." },
+              { table: { head: ["Body", "Arm reach", "Strength", "Footwork", "Boldness", "Plans ahead"], rows: [
+                ["Novice A", "0.62 m", "0.30", "0.20", "0.30", "1 move"],
+                ["Han", "0.70 m", "0.30", "0.50", "0.20", "4 moves"],
+                ["Mid", "0.78 m", "0.50", "0.55", "0.50", "4 moves"],
+                ["Expert", "0.95 m", "0.80", "0.90", "0.85", "6 moves"]
+              ] } },
+              { p: "One of the presets is me: not much strength, and too timid to commit to a big move." },
+              { h: "What the game shows" },
+              { p: "In Manual mode, the game lights up the holds a limb can reach, but never says which one is a good idea. That is also all a beginner knows on a real wall: where they can go next, not whether it leads anywhere. So when a climb fails, the player and the climber failed together." },
+              { h: "It learns" },
+              { p: "After a failed attempt, the holds where it got stuck become less attractive, so the next attempt tries a different line. Each body also gets a little stronger with practice, but only up to its own limit: a novice improves without ever turning into the expert." },
+              { img: { src: "assets/lego-learn.webp", alt: "The climber gets stuck halfway up one side of the tree, then climbs to the top from the other side", caption: "One custom body, sped up 1.5×: stuck at 1.86 m on the first attempt, then a different line to the top." } }
+            ] },
+          { type: "mixed", label: "Technical Solutions",
+            content: [
+              { img: { src: "assets/lego-figure1.png", alt: "Four phases: scan and scale the tree, detect holds, search for moves with depth-limited A*, and play it as a Unity WebGL game" } },
+              { h: "Two ways to use a hold" },
+              { p: "My first rule came from rock climbing: a hold is usable if its surface faces the climber, so it can be pulled outward. A LEGO tree has almost nothing like that. It is made of steps, and the top of every brick layer faces straight up. That rule threw out 76 holds, and no climber could get higher than 1.5 m." },
+              { p: "I changed it so a hold counts if the climber can either pull on it or press down on it. On the next run, the expert reached the top." },
+              { code: "pull   = dot(normal, toward body)   // pull outward\npress  = normal.y                   // press down on a step\nusable = max(pull, press) > threshold" },
+              { img: { src: "assets/lego-holds.webp", alt: "Two front views of the tree. With the pull-only rule, fewer than half of the visible holds are usable. With pull or press, almost all of them are." } },
+              { h: "No physics" },
+              { p: "I chose not to simulate physics. Hanging a jointed body on a scanned, uneven mesh tends to jitter and explode in ways that are hard to test. Without physics, every rule is a plain function that I can run and check outside Unity." }
+            ] },
+          { type: "mixed", label: "Prequel",
+            content: [
+              { p: "This project grew out of an earlier experiment with the same tree. I scanned it into Unity, cut it into four pieces, and used a Kinect so a person could carry the pieces back together. The Kinect could tell me where a hand was, but not what the person meant: a resting arm kept triggering delete. In this project, I stopped tracking a real body and started modelling one." },
+              { img: { src: "assets/lego-expe1.webp", alt: "Experiment 1: a person reassembling pieces of the scanned tree with a Kinect" } }
+            ] },
+          { type: "mixed", label: "Open Question",
+            content: [
+              { p: "How much should the game show? If every good hold lit up, the player would never pick a bad one, and the climb would no longer be a shared attempt. So the game only shows where a limb can reach, not which hold is wise. I still need to watch more people play to know whether this feels like the climber's own judgement, or just like a broken game." }
+            ] },
+          { type: "list", label: "Next Steps", items: [
+            "A jointed figure whose arms and legs grow and shrink with the sliders.",
+            "When a move is refused, show the limb reaching out and falling short, instead of a line of text.",
+            "Leave a trace of each climb on the tree, so different bodies leave different routes behind."
+          ] },
+          { type: "mixed", label: "Play", id: "play",
+            content: [
+              { game: { embed: "https://itch.io/embed-upload/19912522?color=0b0b0c", url: "https://han-zhang233.itch.io/climbing-a-lego-tree", poster: "assets/cv-lego.webp", title: "Climbing a Lego tree!", note: "Click to play (best on a desktop browser)" } },
+              { p: "Also on [itch.io](https://han-zhang233.itch.io/climbing-a-lego-tree)." }
+            ] }
+        ]
+      }
+    },
+    {
       id: "woven-unknown",
       title: "Woven Unknown",
       date: "April 2026",
       categories: ["graphic"],
       summary: "An AI-generated video imagining a future where different AI systems come together as one collective intelligence.",
-      cover: { src: "assets/woven.webp", alt: "A translucent jellyfish-like organism from the film Woven Unknown" },
+      cover: { src: "assets/cv-woven.webp", alt: "A translucent jellyfish-like organism from the film Woven Unknown" },
       tags: ["AI-generated Video", "Speculative Design"],
       page: {
         lede: "What if the future is an ecosystem of intelligences that do not agree?",
@@ -256,7 +340,7 @@ window.PORTFOLIO = {
       date: "December 2025",
       categories: ["interaction"],
       summary: "An interactive reversal of Foucault’s Panopticon. Real-time face detection turns surveillance into the collective power that ruptures the prison.",
-      cover: { src: "assets/panopticon.webp", alt: "3D scenes from The Gaze Panopticon" },
+      cover: { src: "assets/cv-panopticon.webp", alt: "3D scenes from The Gaze Panopticon" },
       tags: ["Interactive Installation", "Speculative Design", "Creative Coding"],
       page: {
         lede: "Can the gaze be turned into a collective power?",
@@ -363,7 +447,7 @@ window.PORTFOLIO = {
       date: "March – July 2024",
       categories: ["interaction"],
       summary: "Turns private dreams into shared visual artifacts through wearable sensing and AI: a collaborative platform between artists and dreamers.",
-      cover: { src: "assets/wonderland.jpg", alt: "Wonderland sleep mask and mobile app screens" },
+      cover: { src: "assets/cv-wonderland.webp", alt: "Wonderland sleep mask and mobile app screens" },
       tags: ["User Experience", "Data Visualization", "Hardware", "3D Modeling"],
       page: {
         lede: "A dream-sharing platform connecting dreamers with artists",
@@ -528,18 +612,19 @@ window.PORTFOLIO = {
     ]
   },
 
-  /* Experiments 页：按组排列。soon: true 会显示 “Coming soon”。 */
+  /* Experiments 页：按组排列。soon: true 会显示 “Coming soon”。
+     { project: "项目id", note } 引用上面 projects 里的项目，封面和标题自动取，点进去是它的内容页。 */
   experiments: [
     { title: "Coding", items: [
-      { title: "Rube Goldberg machine", note: "API fetch practice", cover: { src: "assets/x-www.webp", alt: "Rube Goldberg machine web page" } },
-      { title: "Counting machine", note: "Computational audio analysis", cover: { src: "assets/x-counting.webp", alt: "Counting machine terminal output" } },
-      { title: "Digital Materialities", note: "Shader coding practice", cover: { src: "assets/x-shader.webp", alt: "Pixelated shader studies in green and pink" } },
-      { title: "Text as material", note: "Probabilistic text generation practice", cover: { src: "assets/x-mirror.jpg", alt: "Magic Mirror text generator" } },
-      { title: "Define bisexual", note: "Critical research with a prototype", cover: { src: "assets/x-bisexual.jpg", alt: "Dress-up game result screen" } }
+      { title: "Rube Goldberg machine", note: "API fetch practice", cover: { src: "assets/cv-www.webp", alt: "Rube Goldberg machine web page" } },
+      { title: "Counting machine", note: "Computational audio analysis", cover: { src: "assets/cv-counting.webp", alt: "Counting machine terminal output" } },
+      { title: "Digital Materialities", note: "Shader coding practice", cover: { src: "assets/cv-shader.webp", alt: "Pixelated shader studies in green and pink" } },
+      { title: "Text as material", note: "Probabilistic text generation practice", cover: { src: "assets/cv-mirror.webp", alt: "Magic Mirror text generator" } },
+      { title: "Define bisexual", note: "Critical research with a prototype", cover: { src: "assets/cv-bisexual.webp", alt: "Dress-up game result screen" } }
     ] },
     { title: "Product & Service", items: [
-      { title: "Fluid Drift", note: "Service design", soon: true, cover: { src: "assets/x-fluid.jpg", alt: "Fluid Drift wearable" } },
-      { title: "Sizzle Dialogue", note: "UX design", soon: true, cover: { src: "assets/x-sizzle.jpg", alt: "Sizzle Dialogue cards and app screens" } }
+      { title: "Fluid Drift", note: "Service design", soon: true, cover: { src: "assets/cv-fluid.webp", alt: "Fluid Drift wearable" } },
+      { title: "Sizzle Dialogue", note: "UX design", soon: true, cover: { src: "assets/cv-sizzle.webp", alt: "Sizzle Dialogue cards and app screens" } }
     ] }
   ]
 };
