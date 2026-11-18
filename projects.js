@@ -708,7 +708,8 @@ window.PORTFOLIO = {
     }
   ],
 
-  /* About 页。resume 是网站自己文件夹里的 PDF，换新简历时替换 assets 里的文件并改这里的文件名。 */
+  /* About 页。resume 是网站自己文件夹里的 PDF，换新简历时替换 assets 里的文件并改这里的文件名。
+     photo 是自我介绍右边的照片（方形显示）。 */
   about: {
     title: "About Me",
     paragraphs: [
@@ -716,12 +717,12 @@ window.PORTFOLIO = {
       "My work explores how AI systems process cultural ambiguity in language, and how such processing in turn shapes human cognition and meaning-making."
     ],
     resume: "assets/Resume-Han-Zhang.pdf",
+    photo: { src: "assets/avatar.webp", alt: "Han in front of the Teton Range, in sunglasses and a white jacket" },
     links: [
       ["Email", "gracehan2333@gmail.com", "mailto:gracehan2333@gmail.com"],
       ["LinkedIn", "hanzhang233", "https://www.linkedin.com/in/hanzhang233/"],
       ["Instagram", "kaleidomoon_", "https://www.instagram.com/kaleidomoon_/"],
-      ["YouTube", "@Hanzhang9898", "https://www.youtube.com/@Hanzhang9898"],
-      ["CV", "Google Drive", "https://drive.google.com/file/d/1u9sFXPboTunCVJJ-xxqgWHxT9-m8XxUn/view?usp=sharing"]
+      ["YouTube", "@Hanzhang9898", "https://www.youtube.com/@Hanzhang9898"]
     ]
   },
 
