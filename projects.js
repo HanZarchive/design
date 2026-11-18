@@ -129,6 +129,119 @@ window.PORTFOLIO = {
       }
     },
     {
+      id: "strange-land-universal",
+      title: "Strange Land, Universal",
+      date: "Ongoing Project",
+      categories: ["graphic"],
+      tags: ["Graphic Design", "Press Publication"],
+      accent: "#FF48B0",
+      summary: "A visual investigation into machine-generated environments, cultural homogenization, and the disappearing distinctions between places.",
+      cover: { src: "assets/slu-cover.webp", alt: "Street views of Shanghai, Moscow and New York in the same heat-map palette, labelled Shanghey, Moskou and Neu York" },
+      page: {
+        lede: "What if machines interfere with our familiar city views?",
+        meta: [
+          ["Progress", "Ongoing Project"],
+          ["Role", "Concept, Graphic Design, Printing, Distribution"],
+          ["Tools", "Figma, Illustrator"]
+        ],
+        description: "Strange Land, Universal is the masthead for a series of publications I made in the Graduate Press course. Each chapter takes a different format and has its own topic: a zine, a riso poster, a digital collection and a printed manual, with a collective publication still to come. Each one was produced in multiples, then handed out, posted on the street or published online.\n\nAll of them start from the city street. Together they ask how consumer culture and AI come between us and what we see, and what that does to the way we remember a place.",
+        links: [
+          ["Collection on Are.na", "https://www.are.na/han-zhang-7nbxuw1nsmw/strange-land-universal"],
+          ["Guide on Are.na", "https://www.are.na/han-zhang-7nbxuw1nsmw/strange-land-universal_guide"]
+        ],
+        blocks: [
+          { type: "image", src: "assets/slu-overview.webp", alt: "The four chapters side by side: the Re BIRD zine, the Memory as Abstraction poster, the Strange Land, Universal collection cover and the manual cover" },
+          { type: "mixed", label: "01 / Zine",
+            content: [
+              { big: "Re BIRD: A paper-bag zine about how a memory of wildlife fades" },
+              { p: "A zine folded from a Target paper bag and collaged with birds cut from ads, packaging and a national park brochure. The title is borrowed from an outdoor brand's resale program, ReBird, and its slogan \"Possibility in place of landfill.\"" },
+              { p: "The film Eternal Sunshine of the Spotless Mind was my inspiration. The zine uses three degrees of abstraction to show three degrees of blur in a memory of wildlife: birds as a clear memory of nature, birds as knowledge about a species, and birds as something people consume, until only an abstract shape is left that can still set off a reaction in the body." },
+              { imgs: [
+                { src: "assets/slu-zine-1.webp", alt: "Handmade spread: a falcon and a gull over a mountain photo with the line Possibility in place of landfill" },
+                { src: "assets/slu-zine-2.webp", alt: "Handmade spread: cut-out gulls, a jay and a pelican over rocks and national park text" },
+                { src: "assets/slu-zine-3.webp", alt: "Handmade spread: red and white rooster cut-outs and a traderjoes.com strip on the striped bag" }
+              ] },
+              { h: "Distribution" },
+              { p: "I scanned the handmade original and printed 40 copies, then handed them out to climbers on an outdoor climbing trip. They were happy to take one." },
+              { imgs: [
+                { src: "assets/slu-zine-print-1.webp", alt: "Printed copy: the bird collage spread" },
+                { src: "assets/slu-zine-print-2.webp", alt: "Printed copy: the landfill spread" },
+                { src: "assets/slu-zine-print-3.webp", alt: "Printed copy: the rooster spread" }
+              ] }
+            ] },
+          { type: "mixed", label: "02 / Poster",
+            content: [
+              { big: "Memory as Abstraction: A riso poster of one street, read the way a machine might read it" },
+              { p: "One street photo, read the way a machine might read it. I started with four versions: the title tangled in the trees, the scene tagged with object-detection labels (Sky, Billboard, Automobile, Street Lamp), the street traced down to outlines, and leaves growing over both the street and the title. Each one abstracts the remembered street in a different way." },
+              { imgs: [
+                { src: "assets/slu-poster-v1.webp", alt: "Version 1: the street photo with the title tangled in the trees", caption: "1" },
+                { src: "assets/slu-poster-v2.webp", alt: "Version 2: object-detection boxes labelled Sky, Billboard, Automobile and Street Lamp", caption: "2" },
+                { src: "assets/slu-poster-v3.webp", alt: "Version 3: the street traced as black outlines", caption: "3" },
+                { src: "assets/slu-poster-v4.webp", alt: "Version 4: leaves growing over the street and the title", caption: "4 (chosen)" }
+              ] },
+              { p: "After a group critique I chose version 4 and kept iterating on it before printing it on the risograph. In the final poster the title comes apart: the letters of ABSTRACTION fall down the page one by one." },
+              { imgs: [
+                { src: "assets/slu-poster-riso.webp", alt: "A poster coming out of the risograph", caption: "On the risograph" },
+                { src: "assets/slu-poster-base.webp", alt: "A print with only the street image layers, before the title and leaves", caption: "Before the title layers" },
+                { src: "assets/slu-poster-print.webp", alt: "The final riso poster in orange, mint, green and blue, with the letters of Abstraction falling down the page", caption: "Final print" }
+              ] },
+              { h: "Dissemination" },
+              { p: "I printed 20 copies and put them up in Highland Park, a neighborhood full of independent cafés and small art shops. Besides poles, newspaper boxes and community boards on the street, some shop owners let me put the poster up inside their shops." },
+              { imgs: [
+                { src: "assets/slu-poster-street-2.webp", alt: "The poster on a blue newspaper box at a crosswalk" },
+                { src: "assets/slu-poster-street-3.webp", alt: "The poster on a cork board among event flyers" },
+                { src: "assets/slu-poster-street-5.webp", alt: "The poster on a traffic light pole at an intersection" },
+                { src: "assets/slu-poster-street-6.webp", alt: "The poster on a wall of flyers inside a shop" }
+              ] }
+            ] },
+          { type: "mixed", label: "03 / Collection",
+            content: [
+              { big: "Strange Land, Universal: A collection of ten cities seen through one machine palette" },
+              { p: "Street views from ten places: Cambridge, Shanghai, Beijing, Wuhan, Yellowstone, Moscow, Chicago, Hong Kong, Pasadena and New York. Each one is pushed into the same machine palette, so the light, trees and buildings that made a street local all turn into the same heat-map color. Only the street signs keep their own language." },
+              { p: "The place names are spelled the way they sound, as if written by something that has only heard them: KEMBRIJ, SHANGHEY, BEIJEAN, WOOHAN, YELOSTON, MOSKOU, SHIKAGO, HONGCONG, PASADINA, NEU YORK." },
+              { img: { src: "assets/slu-cities.webp", alt: "Ten street views in the same heat-map palette: Kembrij, Shanghey, Beijean, Woohan, Yeloston, Moskou, Shikago, Hongcong, Pasadina, Neu York" } },
+              { p: "The cover text speaks in the machine's voice. It repeats itself like an incantation and offers convenience and sameness in the same breath: no difference, no distance, no misunderstanding. Stay the same." },
+              { h: "Publication" },
+              { p: "After several rounds of iteration, I published the collection on [Are.na](https://www.are.na/han-zhang-7nbxuw1nsmw/strange-land-universal). I printed it as well, and later tried riso, but viewers felt the digital version left more room for imagination: on a phone screen, the pixels show more." },
+              { imgs: [
+                { src: "assets/slu-coll-cover.webp", alt: "Collection cover: the title over a recoloured street, followed by the machine's text ending in Stay the same", caption: "Digital" },
+                { src: "assets/slu-coll-riso.webp", alt: "A stack of riso-printed covers", caption: "Riso test" },
+                { src: "assets/slu-coll-riso-2.webp", alt: "A riso print of the cover in fluorescent orange, pink and yellow", caption: "Riso test" }
+              ] }
+            ] },
+          { type: "mixed", label: "04 / Manual",
+            content: [
+              { big: "Strange Land, Universal: A short guide to creating a universal city" },
+              { p: "In the collection, a machine flattened the cities. The guide hands the same act to the reader, to do by hand: collect street photos from different places, find and cut out buildings, trees and signs, assemble them on one base photo, join the lines, step back, and keep a record by giving the new city a name." },
+              { p: "The example city in the guide is built from street photos of São Paulo, Melbourne, Los Angeles and New York, found through Mapillary." },
+              { imgs: [
+                { src: "assets/slu-manual-02.webp", alt: "Page 01 Collect: four steps and four street photos from different cities" },
+                { src: "assets/slu-manual-03.webp", alt: "Page 02 Find, Cut: a building, a tree and a sign traced in pink dashed lines and cut out" },
+                { src: "assets/slu-manual-04.webp", alt: "Page 03 Assemble: the cut-outs placed onto one base street photo" }
+              ] },
+              { imgs: [
+                { src: "assets/slu-manual-05.webp", alt: "Page 04 Join: diagrams for trim, overlap and align" },
+                { src: "assets/slu-manual-06.webp", alt: "Page Step Back: the finished collage with checks for ground, alignment and scale" },
+                { src: "assets/slu-manual-07.webp", alt: "Page Keep a Record: a form for the city name and the list of source photographs" }
+              ] },
+              { h: "Physical edition" },
+              { p: "Printed on 110 lb cardstock, 80 lb cardstock and vellum. On the Collect and Find, Cut pages, the photos sit on cardstock and the text and cutting lines are printed on a vellum sheet laid over them, so the reader sees where to cut before picking up the scissors." },
+              { imgs: [
+                { src: "assets/slu-manual-vellum.webp", alt: "Vellum layer of the Find, Cut page: text and pink dashed outlines only", caption: "Vellum" },
+                { src: "assets/slu-manual-card.webp", alt: "Cardstock layer of the Find, Cut page: photos only", caption: "Cardstock" },
+                { src: "assets/slu-manual-03.webp", alt: "The two layers together: outlines over the photos", caption: "Together" }
+              ] },
+              { p: "There is also a [digital version on Are.na](https://www.are.na/han-zhang-7nbxuw1nsmw/strange-land-universal_guide), but unlike the collection, this one works better in the hand. In critique, the instructors noted that the guide lays out my own process and makes even more sense in print." }
+            ] },
+          { type: "mixed", label: "05 / Collective",
+            content: [
+              { big: "Collective Publication" },
+              { p: "A publication made together with the whole class. Coming soon." }
+            ] }
+        ]
+      }
+    },
+    {
       id: "climbing-a-lego-tree",
       title: "Climbing a Lego tree!",
       date: "October 2026",
