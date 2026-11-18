@@ -734,7 +734,8 @@ window.PORTFOLIO = {
       { title: "Counting machine", note: "Computational audio analysis", cover: { src: "assets/cv-counting.webp", alt: "Counting machine terminal output" } },
       { title: "Digital Materialities", note: "Shader coding practice", cover: { src: "assets/cv-shader.webp", alt: "Pixelated shader studies in green and pink" } },
       { title: "Text as material", note: "Probabilistic text generation practice", cover: { src: "assets/cv-mirror.webp", alt: "Magic Mirror text generator" } },
-      { title: "Define bisexual", note: "Critical research with a prototype", cover: { src: "assets/cv-bisexual.webp", alt: "Dress-up game result screen" } }
+      // 暂时隐藏（删掉行首的 // 就会重新显示）：
+      // { title: "Define bisexual", note: "Critical research with a prototype", cover: { src: "assets/cv-bisexual.webp", alt: "Dress-up game result screen" } }
     ] },
     { title: "Product & Service", items: [
       { title: "Fluid Drift", note: "Service design", soon: true, cover: { src: "assets/cv-fluid.webp", alt: "Fluid Drift wearable" } },
